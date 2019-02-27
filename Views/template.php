@@ -107,20 +107,27 @@ desired effect
         <?php if($viewData['user']->hasPermission('permission_view')): ?>
           <li class="<?php echo ($viewData['menuActive']=='permissions')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>permissions"><i class="fa fa-link"></i> <span>Permissões</span></a></li>
         <?php endif; ?>
+
         <?php if($viewData['user']->hasPermission('categories_view')): ?>
           <li class="<?php echo ($viewData['menuActive']=='categories')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
         <?php endif; ?>
+
         <?php if($viewData['user']->hasPermission('brands_view')): ?>
           <li class="<?php echo ($viewData['menuActive']=='brands')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>brands"><i class="fa fa-link"></i> <span>Marcas</span></a></li>
         <?php endif; ?>
+
         <?php if($viewData['user']->hasPermission('pages_view')): ?>
           <li class="<?php echo ($viewData['menuActive']=='pages')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>pages"><i class="fa fa-link"></i> <span>Páginas</span></a></li>
         <?php endif; ?>
-        </li>
+
         <?php if($viewData['user']->hasPermission('products_view')): ?>
           <li class="<?php echo ($viewData['menuActive']=='products')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
         <?php endif; ?>
-        </li>
+
+        <?php if($viewData['user']->hasPermission('users_view')): ?>
+          <li class="<?php echo ($viewData['menuActive']=='users')?'active':''; ?>"><a href="<?php echo BASE_URL; ?>users"><i class="fa fa-link"></i> <span>Usuários</span></a></li>
+        <?php endif; ?>
+        
       </ul>
       <!-- /.sidebar-menu -->
     </section>

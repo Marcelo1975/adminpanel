@@ -236,57 +236,17 @@ class ProductsController extends Controller {
         exit;
     }
 
-    /*
+    public function del_rate($id_rate) {
+        if(!empty($id_rate)) {
+            $rates = new Rates();
+            $id_product = $rates->del($id_rate);
 
-    public function items_edit($id) {
-        if(!empty($id)) {
-            $b = new Brands();
-            $this->arrayInfo['errorItems'] = array();
-            $this->arrayInfo['brand_item'] = $b->getItem($id);
-            $this->arrayInfo['brand_id'] = $id;
-
-            if(isset($_SESSION['formError']) && count($_SESSION['formError']) > 0) {
-                $this->arrayInfo['errorItems'] = $_SESSION['formError'];
-                unset($_SESSION['formError']);
-            }
-
-            $this->loadTemplate('items_brand_edit', $this->arrayInfo);
-        } else {
-            header("Location: ".BASE_URL.'brands');
-            exit;
-        }
-    }
-
-    public function items_brand_edit_action($id) {
-        if(!empty($id)) {
-            $b = new Brands();
-            if(!empty($_POST['name'])) {
-                $name = $_POST['name'];
-
-                $b->editBrand($id, $name);
-
-                header("Location: ".BASE_URL.'brands');
-                exit;
-
-            } else {
-                $_SESSION['formError'] = array('name');
-
-                header("Location: ".BASE_URL.'brands/items_edit/'.$id);
+            if($id_product > 0) {
+                header("Location: ".BASE_URL."products/edit/".$id_product);
                 exit;
             }
-        } else {
-            header("Location: ".BASE_URL.'brands');
-            exit;
         }
-    }
-
-    public function items_del($id_item) {
-        $b = new Brands();
-
-        $b->delBrandItem($id_item);
-
-        header("Location: ".BASE_URL.'brands');
+        header("Location: ".BASE_URL."products");
         exit;
     }
-*/
 }

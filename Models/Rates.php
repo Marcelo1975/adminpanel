@@ -28,4 +28,47 @@ class Rates extends Model {
 
         return $array;
     }
+
+    public function del($id_rate) {
+        $sql = "SELECT id_product FROM rates WHERE id = :id";        
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(":id", $id_rate);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetch();
+
+            $sql = "DELETE FROM rates WHERE id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":id", $id_rate);
+            $sql->execute();
+
+            $rating = 0;
+
+            $sql = "SELECT * FROM rates WHERE id_product = :id_product";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":id_product", $data['id_product']);
+            $sql->execute();
+
+            if($sql->rowCount() > 0) {
+                $total = $sql->rowCount();
+                $soma = 0;
+
+                $rdata = $sql->fetchAll(); 
+                foreach($rdata as $item) {
+                    $some += intval($item['points']);    
+                }
+                $rating = $soma / $total;
+            }
+
+            $sql = "UPDATE products SET rating = :rating WHERE id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":rating", $rating);
+            $sql->bindValue(":id", $data['id_product']);
+            $sql->execute();
+
+            return $data['id_product'];
+        }
+        return 0;
+    }
 }

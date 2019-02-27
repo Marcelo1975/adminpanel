@@ -145,6 +145,9 @@
   <div class="box">
       <div class="box-header">
         <h3 class="box-title">Avaliações</h3>
+        <div class="box-tools">
+          <input type="submit" class="btn btn-success" value="Adicionar Avaliação" />
+        </div>
       </div>
       <div class="box-body">
         <?php if(count($rates) > 0): ?>
